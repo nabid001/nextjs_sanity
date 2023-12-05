@@ -1,7 +1,7 @@
 import TweetCart from "@/components/TweetCart";
 import { fetchTweet } from "@/sanity/actions";
 
-// export const revalidate = 0;
+export const revalidate = 0;
 
 const page = async () => {
   const tweets = await fetchTweet();

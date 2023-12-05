@@ -12,7 +12,7 @@ const Navbar = () => {
         </div>
         <div className="hidden items-center space-x-4 md:flex">
           <Link href="/create-tweet" className="text-gray-300 hover:text-white">
-            Create Post
+            Create Tweet
           </Link>
           <div className="ml-4 flex items-center">
             <img
@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
         <div className="md:hidden">
           <button className="text-white focus:outline-none">
-            <svg
+            {/* <svg
               className="h-6 w-6 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -33,7 +33,7 @@ const Navbar = () => {
                 fill-rule="evenodd"
                 d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"
               />
-            </svg>
+            </svg> */}
           </button>
         </div>
       </div>

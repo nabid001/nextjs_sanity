@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { usePathname, useRouter } from "next/navigation";
+import { createTweet } from "@/sanity/actions";
 
 const FormSchema = z.object({
   tweet: z.string().min(2, {
@@ -23,6 +25,9 @@ const FormSchema = z.object({
 });
 
 const page = () => {
+  const router = useRouter();
+  const path = "/";
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -30,8 +35,15 @@ const page = () => {
     },
   });
 
-  const onSubmit = (values) => {
-    console.log(values.tweet);
+  const onSubmit = async (values) => {
+    const { tweet } = values;
+    try {
+      await createTweet({ tweet, path });
+
+      router.push("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -53,7 +65,9 @@ const page = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button className="mt-3" type="submit">
+          tweet
+        </Button>
       </form>
     </Form>
   );

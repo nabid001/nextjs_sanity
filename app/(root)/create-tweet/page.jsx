@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { usePathname, useRouter } from "next/navigation";
 import { createTweet } from "@/sanity/actions";
+import { CldUploadButton } from "next-cloudinary";
+import { useState } from "react";
 
 const FormSchema = z.object({
   tweet: z.string().min(2, {
@@ -25,6 +27,8 @@ const FormSchema = z.object({
 });
 
 const page = () => {
+  const [imageUrl, setImageUrl] = useState("");
+
   const router = useRouter();
   const path = "/";
 
@@ -38,7 +42,7 @@ const page = () => {
   const onSubmit = async (values) => {
     const { tweet } = values;
     try {
-      await createTweet({ tweet, path });
+      await createTweet({ tweet, imageUrl, path });
 
       router.push("/");
     } catch (error) {
@@ -64,6 +68,13 @@ const page = () => {
               <FormMessage />
             </FormItem>
           )}
+        />
+
+        <CldUploadButton
+          uploadPreset="bypgkwoi"
+          onUpload={(result, widget) => {
+            setImageUrl(result?.info.url);
+          }}
         />
         <Button className="mt-3" type="submit">
           tweet

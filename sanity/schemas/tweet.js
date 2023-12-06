@@ -8,5 +8,10 @@ export default {
       title: "Tweet",
       type: "string",
     },
+    {
+      name: "imageUrl",
+      title: "ImageUrl",
+      type: "string",
+    },
   ],
 };

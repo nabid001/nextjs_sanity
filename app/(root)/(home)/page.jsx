@@ -17,7 +17,11 @@ const page = async () => {
           </>
         ) : (
           tweets.map((tweet) => (
-            <TweetCart tweet={tweet.tweet} tweetId={tweet._id} />
+            <TweetCart
+              tweet={tweet.tweet}
+              tweetId={tweet._id}
+              imageUrl={tweet?.imageUrl}
+            />
           ))
         )}
       </div>

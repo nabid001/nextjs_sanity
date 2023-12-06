@@ -10,7 +10,8 @@ export const fetchTweet = async () => {
     const response = await client.fetch(
       groq`*[_type == "tweet"]{
         _id,
-        tweet
+        tweet,
+        imageUrl
       }`
     );
 
@@ -20,11 +21,12 @@ export const fetchTweet = async () => {
   }
 };
 
-export const createTweet = async ({ tweet, path }) => {
+export const createTweet = async ({ tweet, imageUrl, path }) => {
   try {
     await client.create({
       _type: "tweet",
       tweet,
+      imageUrl,
     });
 
     revalidatePath(path);
